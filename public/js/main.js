@@ -32,9 +32,7 @@ var camera = (function(canvasId, videoId) {
 	};
 
 	document.getElementById('snap').addEventListener('click', function() {
-		var context = canvas.getContext("2d");
 		context.drawImage(video, 0, 0, width, height);
-
 		document.getElementById('snap-choice').style.display = "block";
 	});
 
@@ -45,24 +43,32 @@ var camera = (function(canvasId, videoId) {
 		return image;
 	};
 
+	var clearCanvas = function() {
+		context.clearRect(0, 0, width, height);
+	}
+
 	return {
 		"canvas": canvas,
 		"video": video,
 		"initializeCamera": initializeCamera,
-		"convertCanvasToImage": convertCanvasToImage
+		"convertCanvasToImage": convertCanvasToImage,
+		"clearCanvas": clearCanvas
 	};
 })('canvas', 'camera');
 
 function saveImage() {
 	console.log("Saving Image.");
 	var image = camera.convertCanvasToImage();
-	var list_entry = document.createElement("LI");
-	list_entry.appendChild(image);
-
-	var slideshow = document.getElementById('slideshow');
-	document.getElementById('img-queue').appendChild(list_entry);
-	sendSnapshot(image);
-	slideshow.style.display = "block";
+	camera.clearCanvas();
+	sendSnapshot(image).success(function(data) {
+		if (data.image_saved == true) {
+			var list_entry = document.createElement("LI");
+			list_entry.appendChild(image);
+			var slideshow = document.getElementById('slideshow');
+			document.getElementById('img-queue').appendChild(list_entry);
+			slideshow.style.display = "block";
+		}
+	});
 }
 
 function loadDetails(name, roll_no, festember_id) {
@@ -107,8 +113,8 @@ function sendSnapshot(image) {
 	var formData = new FormData();
 	formData.append("base64image", image.src);
 	formData.append("festember_id", festember_id);
-	
-	$.ajax({
+
+	return $.ajax({
 		url: "/images/",
 		method: "POST",
 		data: formData,
@@ -118,3 +124,18 @@ function sendSnapshot(image) {
 }
 
 document.getElementById('card-input').addEventListener('keypress', checkSubmission);
+
+// Image downloader
+function allImages() {
+	$.ajax({
+		url: "/images",
+	})
+	.success(function(data) {
+		for (var i = 0 ; i < data.length ; i++)  {
+			//Download each image
+			var list_entry = document.createElement("LI");
+			list_entry.innerHTML= "<image src='/images/" + data[i].image_url + "/download'/>" ;
+			document.getElementById('image-list').appendChild(list_entry);
+		}
+	});
+}
