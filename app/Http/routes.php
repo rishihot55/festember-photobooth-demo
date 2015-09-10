@@ -28,7 +28,7 @@ Route::post('images', function() {
 
 	$image = new Image;
 	$image->festember_id = Request::input('festember_id');
-  $image->image_url = Image::saveImage($image_encoded);
+  $image->image_url = Image::saveImage($image_encoded, $image->festember_id);
 
   if ($image->image_url != false) {
     $image->save();
@@ -58,5 +58,5 @@ Route::get('images/festember_id/{id}', function($id) {
 
 Route::get('images/{name}/download', function($name) {
   $storagePath = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
-  return Response::download($storagePath. $name, 'test.png');
+  return Response::download($storagePath. $name, $name);
 });
