@@ -126,16 +126,42 @@ function sendSnapshot(image) {
 document.getElementById('card-input').addEventListener('keypress', checkSubmission);
 
 // Image downloader
+function populateList(data) {
+	document.getElementById('image-list').innerHTML = "";
+	for (var i = 0 ; i < data.length ; i++)  {
+		//Download each image
+		var list_entry = document.createElement("LI");
+		list_entry.innerHTML= "<image src='/images/" + data[i].image_url + "/download'/>" ;
+		document.getElementById('image-list').appendChild(list_entry);
+	}
+}
+
 function allImages() {
 	$.ajax({
 		url: "/images",
 	})
 	.success(function(data) {
-		for (var i = 0 ; i < data.length ; i++)  {
-			//Download each image
-			var list_entry = document.createElement("LI");
-			list_entry.innerHTML= "<image src='/images/" + data[i].image_url + "/download'/>" ;
-			document.getElementById('image-list').appendChild(list_entry);
-		}
+		populateList(data);
+	});
+}
+
+function byFID() {
+	var festember_id = prompt("Enter F-Id");
+	if (festember_id != null)  {
+		$.ajax({
+			url: "/images/festember_id/" + festember_id
+		})
+		.success(function(data) {
+			populateList(data);
+		});
+	}
+}
+
+function todayImages() {
+	$.ajax({
+		url: '/images/today'
+	})
+	.success(function(data) {
+		populateList(data);
 	});
 }

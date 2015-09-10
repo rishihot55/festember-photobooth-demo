@@ -8,9 +8,9 @@
     <header>
       <h1 align="center">Image Viewer</h1>
     </header>
-    <input type="radio" name="choice" onclick="allImages()">
-    <input type="radio" name="choice" onclick="byFID()>">
-    <input type="radio" name="choice" onclick="todayImages()">
+    <input type="radio" name="choice" onclick="allImages()"> All Images
+    <input type="radio" name="choice" onclick="byFID()"> By Festember ID
+    <input type="radio" name="choice" onclick="todayImages()"> Today's Images
 
     <div id="image-viewer">
       <ul id="image-list"></ul>
