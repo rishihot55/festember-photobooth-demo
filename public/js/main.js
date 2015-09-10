@@ -131,7 +131,7 @@ function populateList(data) {
 	for (var i = 0 ; i < data.length ; i++)  {
 		//Download each image
 		var list_entry = document.createElement("LI");
-		list_entry.innerHTML= "<image src='/images/" + data[i].image_url + "/download'/>" ;
+		list_entry.innerHTML= "<image src='/images/" + data[i].image_url + "/download' download/>" ;
 		document.getElementById('image-list').appendChild(list_entry);
 	}
 }
