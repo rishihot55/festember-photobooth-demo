@@ -25,22 +25,38 @@ Route::get('/students/{card}', function($card) {
 
 Route::post('images', function() {
 	$image_encoded = Request::input('base64image');
-	$image_stripped = str_replace('data:image/png;base64,', '', $image_encoded);
-	$image_stripped = str_replace(' ', '+', $image_stripped);
-	$image_data = base64_decode($image_stripped);
-	$image_url = uniqid() . '.png';
-	Storage::disk('local')->put($image_url, $image_data);
 
 	$image = new Image;
 	$image->festember_id = Request::input('festember_id');
-	$image->image_url = $image_url;
+  $image->image_url = Image::saveImage($image_encoded);
 
-	$image->save();
-
-	return response()->json(["image_saved" => true]);
+  if ($image->image_url != false) {
+    $image->save();
+    return response()->json(["image_saved" => true]);
+  } else {
+    return response()->json(["image_saved" => false]);
+  }
 });
 
 Route::get('images', function() {
 	$images = Image::all();
 	return response()->json($images);
+});
+
+Route::get('images/view', function() {
+  return view('image_viewer');
+});
+Route::get('images/today', function() {
+  $images = Image::where('created_at','>=', date("Y-m-d"))->get();
+  return response()->json($images);
+});
+
+Route::get('images/festember_id/{id}', function($id) {
+  $images = Image::where('festember_id', $id)->get();
+  return response()->json($images);
+});
+
+Route::get('images/{name}/download', function($name) {
+  $storagePath = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+  return Response::download($storagePath. $name, 'test.png');
 });
