@@ -29,6 +29,9 @@
 			</div>
 			<div clas='col-md-6'>
 					<canvas id='canvas' width='640' height='480'></canvas>
+					<div id='filter-choices'>
+						
+					</div>
 					<div id='snap-choice' hidden>
 						What do you think?
 						<button onclick='saveImage()'>I like it!</button>
@@ -43,6 +46,7 @@
 
 		<script type='text/javascript' src='js/jquery-1.11.3.js'></script>
 		<script type='text/javascript' src='js/bootstrap.min.js'></script>
-		<script type='text/javascript' src='js/main.js'></script>
+		<script type='text/javascript' src='js/caman.full.js'></script>
+		<script type='text/javascript' src='js/photobooth.js'></script>
 	</body>
 </html>
