@@ -28,9 +28,17 @@
 				<button id='snap'>Snap Photo</button>
 			</div>
 			<div clas='col-md-6'>
+					<canvas id='temp-canvas' width='640' height='480' hidden></canvas>
 					<canvas id='canvas' width='640' height='480'></canvas>
 					<div id='filter-choices'>
-						
+						<button onclick='camera.applyFilter("none")'>None</button>
+						<button onclick='camera.applyFilter("vintage")'>Vintage</button>
+						<button onclick='camera.applyFilter("lomo")'>Lomo</button>
+						<button onclick='camera.applyFilter("sunrise")'>Sunrise</button>
+						<button onclick='camera.applyFilter("grungy")'>Grungy</button>
+						<button onclick='camera.applyFilter("oldBoot")'>Old Boot</button>
+						<button onclick='camera.applyFilter("glowingSun")'>Glowing Sun</button>
+						<button onclick='camera.applyFilter("concentrate")'>Concentrate</button>
 					</div>
 					<div id='snap-choice' hidden>
 						What do you think?
