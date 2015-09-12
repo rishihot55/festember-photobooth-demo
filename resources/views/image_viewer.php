@@ -11,12 +11,11 @@
     <input type="radio" name="choice" onclick="allImages()"> All Images
     <input type="radio" name="choice" onclick="byFID()"> By Festember ID
     <input type="radio" name="choice" onclick="todayImages()"> Today's Images
-
     <div id="image-viewer">
       <ul id="image-list"></ul>
     </div>
 		<script type='text/javascript' src='/js/jquery-1.11.3.js'></script>
 		<script type='text/javascript' src='/js/bootstrap.min.js'></script>
-		<script type='text/javascript' src='/js/main.js'></script>
+		<script type='text/javascript' src='/js/image_viewer.js'></script>
 	</body>
 </html>
