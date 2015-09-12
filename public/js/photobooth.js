@@ -1,13 +1,16 @@
 var camera = (function(args) {
   var width = args.width || 640;
   var height = args.height || 480;
+
   var shutterCallback = args.shutterCallback || function() {};
 
   var canvas = document.getElementById(args.canvasId);
+  var hiddenCanvas = document.getElementById(args.hiddenCanvasId);
   var video = document.getElementById(args.videoId);
   var shutter = document.getElementById(args.shutterId);
 
   var context = canvas.getContext('2d');
+  var hiddenContext = hiddenCanvas.getContext('2d');
   var videoObject = { video: true };
 
   var errorCallback = function(error) {
@@ -36,27 +39,74 @@ var camera = (function(args) {
   // Resets the canvas
   var clearCanvas = function() {
     context.clearRect(0, 0, width, height);
+    hiddenContext.clearRect(0, 0, width, height);
   };
 
   // Clicking this button emulates the shutter button
   shutter.addEventListener('click', function() {
+    hiddenContext.drawImage(video, 0, 0, width, height);
     context.drawImage(video, 0, 0, width, height);
-    Caman(
-      args.canvasId,
-      function() {
-        this.reloadCanvasData();
-        this.vintage();
-        this.render();
-      }
-    );
     shutterCallback();
   });
 
   // Creates an image object out of the contents of the canvas
+  var getImageFromHiddenCanvas = function() {
+    var image = new Image();
+    image.src = hiddenCanvas.toDataURL('image/png');
+    return image;
+  };
+
   var getImageFromCanvas = function() {
     var image = new Image();
     image.src = canvas.toDataURL('image/png');
     return image;
+  };
+
+  var applyFilter = function(filterName) {
+    context.drawImage(hiddenCanvas, 0, 0, width, height);
+    Caman(
+      canvas,
+      function() {
+        this.reloadCanvasData();
+        switch (filterName) {
+          case 'vintage': {
+            this.vintage();
+            break;
+          }
+
+          case 'lomo': {
+            this.lomo();
+            break;
+          }
+
+          case 'sunrise': {
+            this.sunrise();
+            break;
+          }
+
+          case 'grungy': {
+            this.grungy();
+            break;
+          }
+
+          case 'oldBoot': {
+            this.oldBoot();
+            break;
+          }
+
+          case 'glowingSun': {
+            this.glowingSun();
+            break;
+          }
+
+          case 'concentrate': {
+            this.concentrate();
+            break;
+          }
+        }
+        this.render();
+      }
+    );
   };
 
   return {
@@ -64,10 +114,13 @@ var camera = (function(args) {
     initializeWebcam: initializeWebcam,
     getImageFromCanvas: getImageFromCanvas,
     clearCanvas: clearCanvas,
+    applyFilter: applyFilter,
+    getImageFromHiddenCanvas: getImageFromHiddenCanvas,
   };
 }
 )({
   canvasId: 'canvas',
+  hiddenCanvasId: 'temp-canvas',
   videoId: 'camera',
   shutterId: 'snap',
   shutterCallback: function() {
