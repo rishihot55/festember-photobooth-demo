@@ -21,29 +21,22 @@
 				<div>Your F-ID is: <strong><span id='festember-id'></span></strong></div>
 			</div>
 		</div>
-		<div class='row'>
-			<div class='col-md-6'>
+		<div class='row' id='camera-frame'>
+			<div class='col-md-6 col-md-offset-3 text-center'>
 				<video id='camera' width='640' height='480' autoplay></video>
 				<br>
-				<button id='snap'>Snap Photo</button>
+				<button id='snap' class='btn btn-primary btn-lg' hidden>Snap Photo</button>
 			</div>
-			<div clas='col-md-6'>
+		</div>
+		<div class='row' id='photo-frame' hidden>
+			<div class='col-md-6 col-md-offset-3'>
 					<canvas id='temp-canvas' width='640' height='480' hidden></canvas>
 					<canvas id='canvas' width='640' height='480'></canvas>
-					<div id='filter-choices'>
-						<button onclick='camera.applyFilter("none")'>None</button>
-						<button onclick='camera.applyFilter("vintage")'>Vintage</button>
-						<button onclick='camera.applyFilter("lomo")'>Lomo</button>
-						<button onclick='camera.applyFilter("sunrise")'>Sunrise</button>
-						<button onclick='camera.applyFilter("grungy")'>Grungy</button>
-						<button onclick='camera.applyFilter("oldBoot")'>Old Boot</button>
-						<button onclick='camera.applyFilter("glowingSun")'>Glowing Sun</button>
-						<button onclick='camera.applyFilter("concentrate")'>Concentrate</button>
-					</div>
+					<div id='filter-choices'></div>
 					<div id='snap-choice' hidden>
 						What do you think?
-						<button onclick='saveImage()'>I like it!</button>
-						<button onclick='rejectImage()'>Nope!</button>
+						<button onclick='saveImage()' class='btn btn-success btn-lg'>I like it!</button>
+						<button onclick='rejectImage()' class='btn btn-danger btn-lg'>Nope!</button>
 					</div>
 			</div>
 		</div>

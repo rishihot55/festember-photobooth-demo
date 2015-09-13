@@ -18,6 +18,9 @@ var camera = (function(args) {
   };
 
   var initializeWebcam = function() {
+    // Initialized as a singleton
+    if (video.src !== '')
+      return;
     if (navigator.getUserMedia) {
       navigator.getUserMedia(videoObject, function(stream) {
         video.src = stream;
@@ -124,14 +127,15 @@ var camera = (function(args) {
   videoId: 'camera',
   shutterId: 'snap',
   shutterCallback: function() {
+    document.getElementById('camera-frame').style.display = 'none';
     document.getElementById('snap-choice').style.display = 'block';
+    document.getElementById('photo-frame').style.display = 'block';
   },
 });
 
 function saveImage() {
   console.log('Saving Image.');
   var image = camera.getImageFromCanvas();
-
   camera.clearCanvas();
   sendSnapshot(image)
   .done(function(data) {
@@ -144,6 +148,17 @@ function saveImage() {
       slideshow.style.display = 'block';
     }
   });
+
+  document.getElementById('camera-frame').style.display = 'block';
+  document.getElementById('photo-frame').style.display = 'none';
+  document.getElementById('response-box').style.display = 'none';
+}
+
+function rejectImage() {
+  camera.clearCanvas();
+  document.getElementById('camera-frame').style.display = 'block';
+  document.getElementById('photo-frame').style.display = 'none';
+  document.getElementById('response-box').style.display = 'none';
 }
 
 function loadDetails(name, rollNo, festemberId) {
@@ -202,4 +217,37 @@ function sendSnapshot(image) {
   });
 }
 
+function initializeFilterButtons() {
+  // Names of buttons
+  var names = [
+    'None',
+    'Vintage',
+    'Lomo',
+    'Sunrise',
+    'Grungy',
+    'Old Boot',
+    'Glowing Sun',
+    'Concentrate',
+  ];
+
+  var filters = [
+    'none',
+    'vintage',
+    'lomo',
+    'sunrise',
+    'grungy',
+    'oldBoot',
+    'glowingSun',
+    'concentrate',
+  ];
+
+  for (var i = 0; i < names.length; i++) {
+    $('#filter-choices').append('<button class="btn btn-primary btn-lg" onclick="camera.applyFilter(\'' + filters[i] + '\')">' + names[i] + '</button> ');
+  }
+}
+
 document.getElementById('card-input').addEventListener('keypress', checkSubmission);
+
+document.addEventListener('DOMContentLoaded', function() {
+  initializeFilterButtons();
+}, false);
