@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/students', function() {
+  $student = Student::all();
+  return response()->json($student);
+});
+
 Route::get('/students/{card}', function($card) {
 	$student = Student::where('card', $card)->first();
 	return response()->json($student);
