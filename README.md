@@ -25,4 +25,4 @@ Set up .htaccess appropriately to allow URL rewrites.
 - `GET /images/view` - An interface for viewing all images
 
 ## TODO
-- Route to display the festember ID and the images in order to send to the Festember server.
+- Route to display the festember ID and the images in order to send to the Festember server..
