@@ -8,6 +8,7 @@ var camera = (function(args) {
   var hiddenCanvas = document.getElementById(args.hiddenCanvasId);
   var video = document.getElementById(args.videoId);
   var shutter = document.getElementById(args.shutterId);
+  var shutterTimer = document.getElementById(args.shutterTimer);
 
   var context = canvas.getContext('2d');
   var hiddenContext = hiddenCanvas.getContext('2d');
@@ -47,9 +48,22 @@ var camera = (function(args) {
 
   // Clicking this button emulates the shutter button
   shutter.addEventListener('click', function() {
-    hiddenContext.drawImage(video, 0, 0, width, height);
-    context.drawImage(video, 0, 0, width, height);
-    shutterCallback();
+
+    var TIME_DELAY = 7;
+    var INTERVAL = 1000;
+    var MILLISECOND_DELAY = TIME_DELAY * INTERVAL;
+    var countdownInterval = setInterval(function() {
+      if (TIME_DELAY == 0) {
+        hiddenContext.drawImage(video, 0, 0, width, height);
+        context.drawImage(video, 0, 0, width, height);
+        shutterCallback();
+        clearInterval(countdownInterval);
+        shutterTimer.innerHTML = '';
+        return;
+      }
+      shutterTimer.innerHTML = TIME_DELAY;
+      TIME_DELAY--;
+    }, INTERVAL);
   });
 
   // Creates an image object out of the contents of the canvas
@@ -65,6 +79,21 @@ var camera = (function(args) {
     return image;
   };
 
+  var saveImage = function() {
+    var image = getImageFromCanvas();
+    clearCanvas();
+
+    // Add image to image queue
+  };
+
+  var removeImage = function(index) {
+    // Remove the image at the labeled index
+  };
+
+  var uploadImages = function() {
+    // Upload the given images to the server
+  };
+
   var applyFilter = function(filterName) {
     context.drawImage(hiddenCanvas, 0, 0, width, height);
     Caman(
@@ -72,40 +101,27 @@ var camera = (function(args) {
       function() {
         this.reloadCanvasData();
         switch (filterName) {
-          case 'vintage': {
+          case 'vintage':
             this.vintage();
             break;
-          }
-
-          case 'lomo': {
+          case 'lomo':
             this.lomo();
             break;
-          }
-
-          case 'sunrise': {
+          case 'sunrise':
             this.sunrise();
             break;
-          }
-
-          case 'grungy': {
+          case 'grungy':
             this.grungy();
             break;
-          }
-
-          case 'oldBoot': {
+          case 'oldBoot':
             this.oldBoot();
             break;
-          }
-
-          case 'glowingSun': {
+          case 'glowingSun':
             this.glowingSun();
             break;
-          }
-
-          case 'concentrate': {
+          case 'concentrate':
             this.concentrate();
             break;
-          }
         }
         this.render();
       }
@@ -126,6 +142,7 @@ var camera = (function(args) {
   hiddenCanvasId: 'temp-canvas',
   videoId: 'camera',
   shutterId: 'snap',
+  shutterTimer: 'timer-text',
   shutterCallback: function() {
     document.getElementById('camera-frame').style.display = 'none';
     document.getElementById('snap-choice').style.display = 'block';
@@ -133,6 +150,7 @@ var camera = (function(args) {
   },
 });
 
+/*
 function saveImage() {
   console.log('Saving Image.');
   var image = camera.getImageFromCanvas();
@@ -140,20 +158,20 @@ function saveImage() {
   sendSnapshot(image)
   .done(function(data) {
     if (data.image_saved == true) {
-      var slideshow = document.getElementById('slideshow');
-      var listEntry = document.createElement('LI');
-
-      listEntry.appendChild(image);
-      document.getElementById('img-queue').appendChild(listEntry);
-      slideshow.style.display = 'block';
+      $('.carousel-inner').append('<div class="item"><img src="' + image.src + '"/></div>');
+      $('.carousel-indicators').append('<li data-target="slideshow" data-slide-to="' + image_count + '"></li>');
+      $('.item').first().addClass('active');
+      $('.carousel-indicators > li').first().addClass('active');
+      $('#slideshow').carousel('cycle');
+      image_count++;
     }
   });
-
 
   document.getElementById('camera-frame').style.display = 'block';
   document.getElementById('photo-frame').style.display = 'none';
   document.getElementById('response-box').style.display = 'none';
 }
+*/
 
 function rejectImage() {
   camera.clearCanvas();
@@ -197,7 +215,7 @@ function checkSubmission(event) {
   if (key == 13) {
     var card = document.getElementById('card-input').value;
     console.log(card);
-    if (typeof card != undefined) {
+    if (typeof card !== 'undefined' && card !== '' && card !== null) {
       submit(card);
     }
   }
@@ -243,7 +261,12 @@ function initializeFilterButtons() {
   ];
 
   for (var i = 0; i < names.length; i++) {
-    $('#filter-choices').append('<button id="filter-button" onclick="camera.applyFilter(\'' + filters[i] + '\')">' + names[i] + '</button> ');
+    var buttonString =
+      '<button id="filter-button" ' +
+        'onclick="camera.applyFilter(\'' + filters[i] + '\')">' +
+        names[i] +
+      '</button> ';
+    $('#filter-choices').append(buttonString);
   }
 }
 

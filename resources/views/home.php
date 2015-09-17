@@ -4,14 +4,13 @@
 		<title>Festember Photobooth</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/custom.css">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div class="row">
 			<img id="logo" src="logo.png">
 			<h1 align="center">Festember Photobooth</h1>
-			
+
 		</div>
 		<div id='card-input-box' class='row'>
 			<div align='center'>
@@ -19,7 +18,7 @@
 				<input type='password' id='card-input' name='card' autofocus>
 			</div>
 		</div>
-		
+
 		<div class="row">
 
 		<div class='col-md-3 pull-left'>
@@ -29,16 +28,14 @@
 				<p>Your F-ID is <br> <strong><span id='festember-id' style="font-size:18px"></span></strong></p>
 				<button id='snap' style="border:3px solid white">SNAP A PHOTO</button>
 				<div id="timer">
-					
+					<span id='timer-text'></span>
 				</div>
 			</div>
 			<div id="invisible">
-				
 			</div>
 		</div>
 
 			<div class="col-md-6" id="camera-frame">
-			
 				<video id='camera' width='640' height='480' autoplay></video>
 			</div>
 
@@ -56,20 +53,31 @@
 			</div>
 
 		</div>
-
-		<div id='slideshow' hidden>
-			<p>Photos taken so far:</p>
-			<ul id='img-queue'></ul>
+		<!--
+		<div class='container row'>
+			<div id='slideshow' class='carousel slide' data-ride='carousel'>
+				<ol class='carousel-indicators'></ol>
+				<div id='slideshow-inner' class='carousel-inner'></div>
+				<a class='left carousel-control' href='#slideshow' role='button'
+					data-slide='prev'>
+					<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'>
+					</span>
+					<span class='sr-only'>Previous</span>
+				</a>
+				<a class="right carousel-control" href="#slideshow" role="button" data-slide="next">
+    			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    			<span class="sr-only">Next</span>
+  			</a>
+			</div>
 		</div>
-
+		-->
 		<!---For Background-->
 		<div style="position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index:-1;"></div>
-			<div>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			</div>
-
+		<div>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</div>
 		<script type='text/javascript' src='js/jquery-1.11.3.js'></script>
 		<script type='text/javascript' src='js/bootstrap.min.js'></script>
 		<script type='text/javascript' src='js/caman.full.js'></script>
@@ -112,7 +120,7 @@ $(document).ready(function(){
 		  floorPosition: false,
 		  draw: true
 
-		}, 
+		},
 
 
 		lights: {
@@ -148,7 +156,7 @@ $(document).ready(function(){
 
 		},
 
-		// specify the thickness, color, stroke, etc. 
+		// specify the thickness, color, stroke, etc.
 		line: {
 
 		  fill: "rgba(0, 0, 0, 0)",
@@ -157,9 +165,9 @@ $(document).ready(function(){
 		  fluctuationSpeed: 0.5,
 		  draw: false
 
-		}, 
+		},
 
-		// Set the point attributes for the vertex. 
+		// Set the point attributes for the vertex.
 		vertex: {
 
 		  // Radius of vertice circle.
@@ -185,6 +193,6 @@ $(document).ready(function(){
 
 	</script>
 <!--Background end-->
-	
+
 	</body>
 </html>
