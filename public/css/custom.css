@@ -6,8 +6,25 @@ body{
 #response-box{
 	
     padding: 10px;
-    margin-top: 14px;
+    margin-top: 45px;
+    margin-left: 50px;
+}
 
+#timer{
+	width: 150px;
+	height: 80px;
+	border: 3px solid white;
+	color:white;
+	font-weight:bold;
+	font-size: 12px;
+	content: 00;
+	margin:10px auto;
+}
+
+
+#invisble{
+	height: 1px;
+	background-color:transparent;
 }
 
 #camera{
@@ -20,19 +37,105 @@ body{
 
 #snap{
 
-    width: 85px;
+    width: 125px;
     margin: 0 auto;
+    padding: 7px;
+    font-weight: bold;
     display: block;
+    border: 3px soild white;
+    background: none;
 
+}
+
+#snap:hover{
+	background-color: white;
+	color: rgb(238, 37, 68);
 }
 
 #logo{
 	width: 240px;
 	position: absolute;
-	top: -42px;
+	top: -20px;
+	left:30px;
 }
 
-#logo2{
-	float: right;
-	width: 100px;
+#card-input{
+	color: black;
+}
+
+#right{
+	background-color: green;
+	height: 100px;
+}
+
+
+#left{
+	background-color: green;
+	height: 100px;
+}
+
+
+#middle{
+	background-color: blue;
+	height: 100px;
+}
+
+#filter-button{
+	background: transparent;
+    border: 3px solid white;
+	border-radius: 0px;
+    padding: 7px;
+    width: 150px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 11px;
+}
+
+#filter-button:hover{
+	background: white;
+    border: 3px solid white;
+	color: rgb(238, 37, 68);
+}
+
+#snap-choice> p{
+	font-size:18px;
+	font-weight: bold;
+}
+
+#positive{
+	background: transparent;
+    border: 3px solid white;
+	border-radius: 0px;
+    padding: 7px;
+    width: 150px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 11px;
+}
+
+#negative{
+	background: transparent;
+    border: 3px solid white;
+	border-radius: 0px;
+    padding: 7px;
+    width: 150px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 11px;
+}
+
+#positive:hover{
+	background-color: #449D44;
+	color: white;
+}
+
+
+#negative:hover{
+	background-color: #C9302C;
+	color: white;
+}
+
+#canvas{
+	margin-top: 5px;
+	width: 304px;
 }
