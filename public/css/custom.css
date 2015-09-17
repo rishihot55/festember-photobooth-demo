@@ -1,0 +1,38 @@
+body{
+	background-color: rgb(255,57,68);
+	color: white;
+}
+
+#response-box{
+	
+    padding: 10px;
+    margin-top: 14px;
+
+}
+
+#camera{
+
+    border: solid;
+    margin: 15px auto;
+    display: block;
+
+}
+
+#snap{
+
+    width: 85px;
+    margin: 0 auto;
+    display: block;
+
+}
+
+#logo{
+	width: 240px;
+	position: absolute;
+	top: -42px;
+}
+
+#logo2{
+	float: right;
+	width: 100px;
+}
