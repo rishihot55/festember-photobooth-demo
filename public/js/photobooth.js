@@ -149,6 +149,7 @@ function saveImage() {
     }
   });
 
+
   document.getElementById('camera-frame').style.display = 'block';
   document.getElementById('photo-frame').style.display = 'none';
   document.getElementById('response-box').style.display = 'none';
@@ -242,7 +243,7 @@ function initializeFilterButtons() {
   ];
 
   for (var i = 0; i < names.length; i++) {
-    $('#filter-choices').append('<button class="btn btn-primary btn-lg" onclick="camera.applyFilter(\'' + filters[i] + '\')">' + names[i] + '</button> ');
+    $('#filter-choices').append('<button id="filter-button" onclick="camera.applyFilter(\'' + filters[i] + '\')">' + names[i] + '</button> ');
   }
 }
 

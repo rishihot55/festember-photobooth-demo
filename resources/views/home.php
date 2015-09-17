@@ -8,49 +8,62 @@
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<header>
-				<h1 align="center">Festember Photobooth</h1>
-				<img id="logo" src="logo.png">
-		</header>
+		<div class="row">
+			<img id="logo" src="logo.png">
+			<h1 align="center">Festember Photobooth</h1>
+			
+		</div>
 		<div id='card-input-box' class='row'>
 			<div align='center'>
 				<label for='card'>Please scan the card</label>
 				<input type='password' id='card-input' name='card' autofocus>
 			</div>
 		</div>
-		<div id='response-box' hidden class='row'>
-			<div class='col-md-4 col-md-offset-4'>
-				<div>Hello <strong><span id='student-name'></span></strong>!</div>
-				<div>Just to confirm, your Roll Number is: <strong><span id='roll-number'></span></strong></div>
-				<div>Your F-ID is: <strong><span id='festember-id'></span></strong></div>
+		
+		<div class="row">
+
+		<div class='col-md-3 pull-left'>
+			<div id="response-box" hidden>
+				<p>Hello,<br> <strong><span id='student-name' style="font-size:18px"></span></strong>!</p><br>
+				<p>Just to confirm, your Roll Number is<br> <strong><span id='roll-number' style="font-size:18px"></span></strong></p><br>
+				<p>Your F-ID is <br> <strong><span id='festember-id' style="font-size:18px"></span></strong></p>
+				<button id='snap' style="border:3px solid white">SNAP A PHOTO</button>
+				<div id="timer">
+					
+				</div>
+			</div>
+			<div id="invisible">
+				
 			</div>
 		</div>
-		<div class='row' id='camera-frame'>
-			<div class='col-md-6 col-md-offset-3 text-center'>
+
+			<div class="col-md-6" id="camera-frame">
+			
 				<video id='camera' width='640' height='480' autoplay></video>
-				<br>
-				<img id='snap' hidden src="camera.png" >
 			</div>
-		</div>
-		<div class='row' id='photo-frame' hidden >
-			<div class='col-md-6 col-md-offset-3'>
+
+			<div class="col-md-3 pull-right">
+				<div class='row' id='photo-frame' hidden >
 					<canvas id='temp-canvas' width='640' height='480' hidden></canvas>
-					<canvas id='canvas' width='640' height='480'></canvas>
 					<div id='filter-choices'></div>
+					<canvas id='canvas' width='640' height='480'></canvas>
 					<div id='snap-choice' hidden>
-						What do you think?
-						<button onclick='saveImage()' class='btn btn-success btn-lg'>I like it!</button>
-						<button onclick='rejectImage()' class='btn btn-danger btn-lg'>Nope!</button>
+						<p>What do you think?<p>
+						<button onclick='saveImage()' id='positive'>I like it!</button>
+						<button onclick='rejectImage()' id='negative'>Nope!</button>
 					</div>
+				</div>
 			</div>
+
 		</div>
+
 		<div id='slideshow' hidden>
 			<p>Photos taken so far:</p>
 			<ul id='img-queue'></ul>
 		</div>
 
 		<!---For Background-->
-		<div style="position: fixed; left: 0; right: 0; top: 0; bottom: 0;"></div>
+		<div style="position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index:-1;"></div>
 			<div>
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
