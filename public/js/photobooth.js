@@ -61,7 +61,7 @@ var camera = (function(args) {
         shutterTimer.innerHTML = '';
         return;
       }
-      shutterTimer.innerHTML = TIME_DELAY;
+      shutterTimer.innerHTML = "00:0"+TIME_DELAY;
       TIME_DELAY--;
     }, INTERVAL);
   });
