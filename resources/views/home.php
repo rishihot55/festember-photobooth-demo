@@ -21,19 +21,19 @@
 
 		<div class="row">
 
-		<div class='col-md-3 pull-left'>
-			<div id="response-box" hidden>
-				<p>Hello,<br> <strong><span id='student-name' style="font-size:18px"></span></strong>!</p><br>
-				<p>Just to confirm, your Roll Number is<br> <strong><span id='roll-number' style="font-size:18px"></span></strong></p><br>
-				<p>Your F-ID is <br> <strong><span id='festember-id' style="font-size:18px"></span></strong></p>
-				<button id='snap' style="border:3px solid white">SNAP A PHOTO</button>
-				<div id="timer">
-					<span id='timer-text'></span>
+			<div class='col-md-3 pull-left'>
+				<div id="response-box" hidden>
+					<p>Hello,<br> <strong><span id='student-name' style="font-size:18px"></span></strong>!</p><br>
+					<p>Just to confirm, your Roll Number is<br> <strong><span id='roll-number' style="font-size:18px"></span></strong></p><br>
+					<p>Your F-ID is <br> <strong><span id='festember-id' style="font-size:18px"></span></strong></p>
+					<button id='snap' style="border:3px solid white">SNAP A PHOTO</button>
+					<div id="timer">
+						<span id='timer-text'></span>
+					</div>
+				</div>
+				<div id="invisible">
 				</div>
 			</div>
-			<div id="invisible">
-			</div>
-		</div>
 
 			<div class="col-md-6" id="camera-frame">
 				<video id='camera' width='640' height='480' autoplay></video>
@@ -46,31 +46,13 @@
 					<canvas id='canvas' width='640' height='480'></canvas>
 					<div id='snap-choice' hidden>
 						<p>What do you think?<p>
-						<button onclick='saveImage()' id='positive'>I like it!</button>
-						<button onclick='rejectImage()' id='negative'>Nope!</button>
+						<button onclick='camera.saveImage()' id='positive'>I like it!</button>
+						<button onclick='camera.rejectImage()' id='negative'>Nope!</button>
 					</div>
 				</div>
 			</div>
+		</div>
 
-		</div>
-		<!--
-		<div class='container row'>
-			<div id='slideshow' class='carousel slide' data-ride='carousel'>
-				<ol class='carousel-indicators'></ol>
-				<div id='slideshow-inner' class='carousel-inner'></div>
-				<a class='left carousel-control' href='#slideshow' role='button'
-					data-slide='prev'>
-					<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'>
-					</span>
-					<span class='sr-only'>Previous</span>
-				</a>
-				<a class="right carousel-control" href="#slideshow" role="button" data-slide="next">
-    			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    			<span class="sr-only">Next</span>
-  			</a>
-			</div>
-		</div>
-		-->
 		<!---For Background-->
 		<div style="position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index:-1;"></div>
 		<div>
@@ -81,6 +63,7 @@
 		<script type='text/javascript' src='js/jquery-1.11.3.js'></script>
 		<script type='text/javascript' src='js/bootstrap.min.js'></script>
 		<script type='text/javascript' src='js/caman.full.js'></script>
+		<script type='text/javascript' src='js/jquery.photoset-grid.min.js'></script>
 		<script type='text/javascript' src='js/photobooth.js'></script>
 		<script src="js/geometryangle.js"></script>
 <script>

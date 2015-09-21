@@ -18,6 +18,7 @@ var camera = (function(args) {
     console.log('Video capture error: ', error.code);
   };
 
+  var images = [];
   var initializeWebcam = function() {
     // Initialized as a singleton
     if (video.src !== '')
@@ -82,16 +83,14 @@ var camera = (function(args) {
   var saveImage = function() {
     var image = getImageFromCanvas();
     clearCanvas();
-
-    // Add image to image queue
+    args.saveImageCallback();
+    uploadImage(image);
   };
 
-  var removeImage = function(index) {
-    // Remove the image at the labeled index
-  };
-
-  var uploadImages = function() {
-    // Upload the given images to the server
+  var rejectImage = function() {
+    camera.clearCanvas();
+    document.getElementById('camera-frame').style.display = 'block';
+    document.getElementById('photo-frame').style.display = 'none';
   };
 
   var applyFilter = function(filterName) {
@@ -135,6 +134,9 @@ var camera = (function(args) {
     clearCanvas: clearCanvas,
     applyFilter: applyFilter,
     getImageFromHiddenCanvas: getImageFromHiddenCanvas,
+    saveImage: saveImage,
+    rejectImage: rejectImage,
+    images: images,
   };
 }
 )({
@@ -148,37 +150,11 @@ var camera = (function(args) {
     document.getElementById('snap-choice').style.display = 'block';
     document.getElementById('photo-frame').style.display = 'block';
   },
+  saveImageCallback: function() {
+    document.getElementById('camera-frame').style.display = 'block';
+    document.getElementById('photo-frame').style.display = 'none';
+  }
 });
-
-/*
-function saveImage() {
-  console.log('Saving Image.');
-  var image = camera.getImageFromCanvas();
-  camera.clearCanvas();
-  sendSnapshot(image)
-  .done(function(data) {
-    if (data.image_saved == true) {
-      $('.carousel-inner').append('<div class="item"><img src="' + image.src + '"/></div>');
-      $('.carousel-indicators').append('<li data-target="slideshow" data-slide-to="' + image_count + '"></li>');
-      $('.item').first().addClass('active');
-      $('.carousel-indicators > li').first().addClass('active');
-      $('#slideshow').carousel('cycle');
-      image_count++;
-    }
-  });
-
-  document.getElementById('camera-frame').style.display = 'block';
-  document.getElementById('photo-frame').style.display = 'none';
-  document.getElementById('response-box').style.display = 'none';
-}
-*/
-
-function rejectImage() {
-  camera.clearCanvas();
-  document.getElementById('camera-frame').style.display = 'block';
-  document.getElementById('photo-frame').style.display = 'none';
-  document.getElementById('response-box').style.display = 'none';
-}
 
 function loadDetails(name, rollNo, festemberId) {
   document.getElementById('student-name').innerHTML = name;
@@ -221,7 +197,7 @@ function checkSubmission(event) {
   }
 }
 
-function sendSnapshot(image) {
+function uploadImage(image) {
   var festemberId = document.getElementById('festember-id').innerHTML;
   var formData = new FormData();
   formData.append('base64image', image.src);
