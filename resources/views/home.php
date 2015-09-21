@@ -4,13 +4,11 @@
 		<title>Festember Photobooth</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/custom.css">
-		<link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div class="row">
 			<img id="logo" src="logo.png">
 			<h1 align="center">Festember Photobooth</h1>
-
 		</div>
 		<div id='card-input-box' class='row'>
 			<div align='center'>
@@ -20,7 +18,6 @@
 		</div>
 
 		<div class="row">
-
 			<div class='col-md-3 pull-left'>
 				<div id="response-box" hidden>
 					<p>Hello,<br> <strong><span id='student-name' style="font-size:18px"></span></strong>!</p><br>
@@ -30,6 +27,7 @@
 					<div id="timer">
 						<span id='timer-text'></span>
 					</div>
+					<button id='end'>END PHOTOBOOTH</button>
 				</div>
 				<div id="invisible">
 				</div>
@@ -63,7 +61,6 @@
 		<script type='text/javascript' src='js/jquery-1.11.3.js'></script>
 		<script type='text/javascript' src='js/bootstrap.min.js'></script>
 		<script type='text/javascript' src='js/caman.full.js'></script>
-		<script type='text/javascript' src='js/jquery.photoset-grid.min.js'></script>
 		<script type='text/javascript' src='js/photobooth.js'></script>
 		<script src="js/geometryangle.js"></script>
 <script>

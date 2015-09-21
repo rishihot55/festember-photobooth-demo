@@ -4,7 +4,7 @@ body{
 }
 
 #response-box{
-	
+
     padding: 10px;
     margin-top: 45px;
     margin-left: 50px;
@@ -50,12 +50,27 @@ body{
     padding: 7px;
     font-weight: bold;
     display: block;
-    border: 3px soild white;
+    border: 3px solid white;
     background: none;
 
 }
 
 #snap:hover{
+	background-color: white;
+	color: rgb(238, 37, 68);
+}
+
+#end {
+	width: 125px;
+	margin: 0 auto;
+	padding: 7 px;
+	font-weight: bold;
+	display: block;
+	border: 3px solid white;
+	background: none;
+}
+
+#end:hover {
 	background-color: white;
 	color: rgb(238, 37, 68);
 }

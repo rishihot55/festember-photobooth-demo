@@ -4,11 +4,14 @@ var camera = (function(args) {
 
   var shutterCallback = args.shutterCallback || function() {};
 
+  var streamObj;
+
   var canvas = document.getElementById(args.canvasId);
   var hiddenCanvas = document.getElementById(args.hiddenCanvasId);
   var video = document.getElementById(args.videoId);
   var shutter = document.getElementById(args.shutterId);
   var shutterTimer = document.getElementById(args.shutterTimer);
+  var cameraStopper = document.getElementById(args.cameraStopperId);
 
   var context = canvas.getContext('2d');
   var hiddenContext = hiddenCanvas.getContext('2d');
@@ -21,20 +24,21 @@ var camera = (function(args) {
   var images = [];
   var initializeWebcam = function() {
     // Initialized as a singleton
-    if (video.src !== '')
-      return;
     if (navigator.getUserMedia) {
       navigator.getUserMedia(videoObject, function(stream) {
+        streamObj = stream;
         video.src = stream;
         video.play();
       }, errorCallback);
     } else if (navigator.webkitGetUserMedia) {
       navigator.webkitGetUserMedia(videoObject, function(stream) {
+        streamObj = stream;
         video.src = window.URL.createObjectURL(stream);
         video.play();
       }, errorCallback);
     } else if (navigator.mozGetUserMedia) {
       navigator.mozGetUserMedia(videoObject, function(stream) {
+        streamObj = stream;
         video.src = window.URL.createObjectURL(stream);
         video.play();
       }, errorCallback);
@@ -67,6 +71,12 @@ var camera = (function(args) {
     }, INTERVAL);
   });
 
+  cameraStopper.addEventListener('click', function() {
+    // Clear video source
+    streamObj.getTracks()[0].stop();
+    video.src = '';
+    args.cameraStopperCallback();
+  });
   // Creates an image object out of the contents of the canvas
   var getImageFromHiddenCanvas = function() {
     var image = new Image();
@@ -89,8 +99,7 @@ var camera = (function(args) {
 
   var rejectImage = function() {
     camera.clearCanvas();
-    document.getElementById('camera-frame').style.display = 'block';
-    document.getElementById('photo-frame').style.display = 'none';
+    args.rejectImageCallback();
   };
 
   var applyFilter = function(filterName) {
@@ -153,6 +162,19 @@ var camera = (function(args) {
   saveImageCallback: function() {
     document.getElementById('camera-frame').style.display = 'block';
     document.getElementById('photo-frame').style.display = 'none';
+  },
+  rejectImageCallback: function() {
+    document.getElementById('camera-frame').style.display = 'block';
+    document.getElementById('photo-frame').style.display = 'none';
+  },
+  cameraStopperId: 'end',
+  cameraStopperCallback: function() {
+    document.getElementById('response-box').style.display = 'none';
+    document.getElementById('snap-choice').style.display = 'none';
+    document.getElementById('photo-frame').style.display = 'none';
+    document.getElementById('card-input').value = '';
+    document.getElementById('card-input-box').style.display = 'block';
+    document.getElementById('card-input').focus();
   }
 });
 
@@ -175,6 +197,7 @@ function submit(card) {
       if (JSON.stringify(response) != '{}') {
         loadDetails(response.name, response.roll_no, response.festember_id);
         camera.initializeWebcam();
+        document.getElementById('card-input-box').style.display = 'none';
       }
     }
   )
