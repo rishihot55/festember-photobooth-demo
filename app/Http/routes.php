@@ -33,7 +33,8 @@ Route::post('images', function() {
 
 	$image = new Image;
 	$image->festember_id = Request::input('festember_id');
-  $image->image_url = Image::saveImage($image_encoded, $image->festember_id);
+  $student = Student::where('festember_id', $image->festember_id)->first();
+  $image->image_url = Image::saveImage($image_encoded, $student);
 
   if ($image->image_url != false) {
     $image->save();
