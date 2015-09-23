@@ -4,11 +4,13 @@
 		<title>Festember Photobooth</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/custom.css">
+		<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow:700,400' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	</head>
-	<body>
+	<body style="overflow:hidden;">
 		<div class="row">
 			<img id="logo" src="logo.png">
-			<h1 align="center">Festember Photobooth</h1>
+			<h1 align="center" class="heading">Festember Photobooth</h1>
 		</div>
 		<div id='card-input-box' class='row'>
 			<div align='center'>
@@ -50,13 +52,11 @@
 				</div>
 			</div>
 		</div>
-
+		<p id="tag" align="center">Made with <span class="glyphicon glyphicon-heart"></span> by <span style="font-weight:700;font-size:20px;">Spider</span></p>
 		<!---For Background-->
 		<div style="position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index:-1;"></div>
 		<div>
-			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		</div>
 		<script type='text/javascript' src='js/jquery-1.11.3.js'></script>
 		<script type='text/javascript' src='js/bootstrap.min.js'></script>
