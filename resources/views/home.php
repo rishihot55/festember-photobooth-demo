@@ -6,10 +6,15 @@
 		<link rel="stylesheet" href="css/custom.css">
 		<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow:700,400' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<script
+			  src="https://code.jquery.com/jquery-3.1.0.min.js"
+			  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+			  crossorigin="anonymous"></script>
+		
 	</head>
 	<body style="overflow:hidden;">
 		<div class="row">
-			<img id="logo" src="logo.png">
+			<img id="logo" src="logo.png" width="190">
 			<h1 align="center" class="heading">Festember Photobooth</h1>
 		</div>
 		<div id='card-input-box' class='row'>
@@ -89,8 +94,8 @@ $(document).ready(function(){
 		  xRange: 0.8,
 		  yRange: 0.1,
 		  zRange: 1.0,
-		  ambient: 'rgba(85, 85, 85, 1)',
-		  diffuse: 'rgba(255, 255, 255, 1)',
+		  ambient: 'rgba(57,130,227, 1)',
+		  diffuse: 'rgba(47,245,241, 1)',
 		  background: 'rgb(255, 255, 255)',
 		  speed: 0.0002,
 		  fluctuationSpeed: 0.5,
@@ -114,7 +119,7 @@ $(document).ready(function(){
 		  zOffset: 100,
 
 		  ambient: 'rgba(255,0,102, 1)',
-		  diffuse: 'rgba(255,136,0, 1)',
+		  diffuse: 'rgba(113,190,255, 1)',
 		  speed: 0.010,
 		  gravity: 1200,
 
