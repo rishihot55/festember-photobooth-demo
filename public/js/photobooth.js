@@ -24,25 +24,43 @@ var camera = (function(args) {
   var images = [];
   var initializeWebcam = function() {
     // Initialized as a singleton
-    if (navigator.getUserMedia) {
-      navigator.getUserMedia(videoObject, function(stream) {
-        streamObj = stream;
-        video.src = stream;
-        video.play();
-      }, errorCallback);
-    } else if (navigator.webkitGetUserMedia) {
-      navigator.webkitGetUserMedia(videoObject, function(stream) {
-        streamObj = stream;
-        video.src = window.URL.createObjectURL(stream);
-        video.play();
-      }, errorCallback);
-    } else if (navigator.mozGetUserMedia) {
-      navigator.mozGetUserMedia(videoObject, function(stream) {
-        streamObj = stream;
-        video.src = window.URL.createObjectURL(stream);
-        video.play();
-      }, errorCallback);
-    }
+    // if (navigator.getUserMedia) {
+    //   navigator.getUserMedia(videoObject, function(stream) {
+    //     streamObj = stream;
+    //     video.src = stream;
+    //     var pPromise = video.play();
+    //     pPromise.then(function() {
+    //       console.log("Playing");
+    //     })
+    //     .catch(function(err) {
+    //       console.log("ERROR: " + err);
+    //     })
+    //   }, errorCallback);
+    // } else if (navigator.webkitGetUserMedia) {
+    //   navigator.webkitGetUserMedia(videoObject, function(stream) {
+    //     streamObj = stream;
+    //     video.src = window.URL.createObjectURL(stream);
+    //     video.play();
+    //   }, errorCallback);
+    // } else if (navigator.mozGetUserMedia) {
+    //   navigator.mozGetUserMedia(videoObject, function(stream) {
+    //     streamObj = stream;
+    //     video.src = window.URL.createObjectURL(stream);
+    //     video.play();
+    //   }, errorCallback);
+    // }
+
+    navigator.mediaDevices.getUserMedia(videoObject)
+    .then(function(mediaStream) {
+      streamObj = mediaStream;
+      video.src = window.URL.createObjectURL(mediaStream);
+      video.play()
+      .then(function() {
+        console.log("success");
+      })
+      .catch(errorCallback);
+    })
+    .catch(errorCallback);
   };
 
   // Resets the canvas
