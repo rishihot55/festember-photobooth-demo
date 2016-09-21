@@ -14,7 +14,7 @@
 	</head>
 	<body style="overflow:hidden;">
 		<div class="row">
-			<img id="logo" src="logo.png" width="190">
+			<img id="logo" src="logo.png" >
 			<h1 align="center" class="heading">Festember Photobooth</h1>
 		</div>
 		<div id='card-input-box' class='row'>
