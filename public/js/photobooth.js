@@ -14,7 +14,7 @@ var camera = (function(args) {
 
   var context = canvas.getContext('2d');
   var hiddenContext = hiddenCanvas.getContext('2d');
-  var videoObject = { video: true };
+  var videoObject = { video: {mandatory: { minWidth: 1280, minHeight: 720 }}};
 
   var errorCallback = function(error) {
     console.log('Video capture error: ', error.code);
