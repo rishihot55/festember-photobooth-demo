@@ -1,7 +1,7 @@
 //============================================================
 //
 // Copyright below.
-// 
+//
 // CoAuthor: Patrick Geyer
 //
 // Twitter: https://twitter.com/PatrickGeyer_
@@ -1922,7 +1922,6 @@ FSS.SVGRenderer.prototype.formatStyle = function (color) {
         }
 
         function onMouseMove(event) {
-            console.log(event);
             FSS.Vector3.set(attractor, event.x, event.y);
             /* 			FSS.Vector3.subtract(attractor, center); */
         }

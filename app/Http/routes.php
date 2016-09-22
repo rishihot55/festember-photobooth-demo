@@ -32,9 +32,7 @@ Route::post('images', function() {
 	$image_encoded = Request::input('base64image');
 
 	$image = new Image;
-	$image->festember_id = Request::input('festember_id');
-  $student = Student::where('festember_id', $image->festember_id)->first();
-  $image->image_url = Image::saveImage($image_encoded, $student);
+  $image->image_url = Image::saveImage($image_encoded);
 
   if ($image->image_url != false) {
     $image->save();
