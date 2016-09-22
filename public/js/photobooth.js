@@ -134,6 +134,8 @@ var camera = (function(args) {
   };
 }
 )({
+  width: '1280',
+  height: '720',
   canvasId: 'canvas',
   hiddenCanvasId: 'temp-canvas',
   videoId: 'camera',
@@ -141,6 +143,7 @@ var camera = (function(args) {
   shutterTimer: 'timer-text',
   shutterCallback: function() {
     document.getElementById('camera-frame').style.display = 'none';
+    document.getElementById('canvas-frame').style.display = 'block';
     document.getElementById('snap-choice').style.display = 'block';
     document.getElementById('photo-frame').style.display = 'block';
   },
@@ -151,6 +154,7 @@ var camera = (function(args) {
   rejectImageCallback: function() {
     document.getElementById('camera-frame').style.display = 'block';
     document.getElementById('photo-frame').style.display = 'none';
+    document.getElementById('canvas-frame').style.display = 'none';
   },
 });
 
