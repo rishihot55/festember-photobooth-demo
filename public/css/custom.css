@@ -12,9 +12,9 @@ body{
 
 #response-box{
 
-    padding: 10px;
-    margin-top: 45px;
-    margin-left: 50px;
+	padding: 10px;
+	margin-top: 45px;
+	margin-left: 50px;
 }
 
 #timer{
@@ -41,6 +41,10 @@ body{
 	text-shadow: 2px 2px 0px #9C1229;
 	font-size: 18px;
 
+	position: absolute;
+	bottom: 12%;
+	left:50%;
+
 }
 
 
@@ -53,13 +57,13 @@ body{
 
 #snap{
 
-    width: 125px;
-    margin: 0 auto;
-    padding: 7px;
-    font-weight: bold;
-    display: block;
-    border: 3px solid white;
-    background: none;
+	width: 125px;
+	margin: 0 auto;
+	padding: 7px;
+	font-weight: bold;
+	display: block;
+	border: 3px solid white;
+	background: none;
 
 }
 
@@ -118,18 +122,18 @@ body{
 
 #filter-button{
 	background: transparent;
-    border: 3px solid white;
+	border: 3px solid white;
 	border-radius: 0px;
-    padding: 7px;
-    width: 150px;
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 11px;
+	padding: 7px;
+	width: 150px;
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: 11px;
 }
 
 #filter-button:hover{
 	background: white;
-    border: 3px solid white;
+	border: 3px solid white;
 	color: rgb(238, 37, 68);
 }
 
@@ -140,24 +144,24 @@ body{
 
 #positive{
 	background: transparent;
-    border: 3px solid white;
+	border: 3px solid white;
 	border-radius: 0px;
-    padding: 7px;
-    width: 150px;
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 11px;
+	padding: 7px;
+	width: 150px;
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: 11px;
 }
 
 #negative{
 	background: transparent;
-    border: 3px solid white;
+	border: 3px solid white;
 	border-radius: 0px;
-    padding: 7px;
-    width: 150px;
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 11px;
+	padding: 7px;
+	width: 150px;
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: 11px;
 }
 
 #positive:hover{
