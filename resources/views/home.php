@@ -17,24 +17,13 @@
 			<img id="logo" src="logo.png" >
 			<h1 align="center" class="heading">Festember Photobooth</h1>
 		</div>
-		<div id='card-input-box' class='row'>
-			<div align='center'>
-				<label for='card'>Please scan the card</label>
-				<input type='password' id='card-input' name='card' autofocus>
-			</div>
-		</div>
-
 		<div class="row">
-			<div class='col-md-3 pull-left'>
-				<div id="response-box" hidden>
-					<p>Hello,<br> <strong><span id='student-name' style="font-size:18px"></span></strong>!</p><br>
-					<p>Just to confirm, your Roll Number is<br> <strong><span id='roll-number' style="font-size:18px"></span></strong></p><br>
-					<p>Your F-ID is <br> <strong><span id='festember-id' style="font-size:18px"></span></strong></p>
+			<div class='col-md-2 pull-left'>
+				<div id="response-box">
 					<button id='snap' style="border:3px solid white">SNAP A PHOTO</button>
 					<div id="timer">
 						<span id='timer-text'></span>
 					</div>
-					<button id='end'>END PHOTOBOOTH</button>
 				</div>
 				<div id="invisible">
 				</div>
