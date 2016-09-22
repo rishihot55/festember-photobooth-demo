@@ -51,12 +51,6 @@ body{
 	background-color:transparent;
 }
 
-#camera{
-    margin: 15px auto;
-    display: block;
-
-}
-
 #snap{
 
     width: 125px;
@@ -177,6 +171,37 @@ body{
 	color: white;
 }
 
+#camera {
+	width: 100%;
+	height: 100%;
+}
+
 #canvas{
-	margin: 15px auto;
+	width: 100%;
+	height: 100%;
+}
+
+@media (width: 1366px) {
+	#camera-frame {
+		width: 640px;
+		height: 480px;
+	}
+
+	#canvas-frame {
+		width: 640px;
+		height: 480px;
+	}
+}
+
+
+@media (width: 1920px) {
+	#camera-frame {
+		width: 1280px;
+		height: 720px;
+	}
+
+	#canvas-frame {
+		width: 1280px;
+		height: 720px;
+	}
 }

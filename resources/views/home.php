@@ -29,11 +29,13 @@
 				</div>
 			</div>
 
-			<div class="col-md-6" id="camera-frame">
-				<video id='camera' width='1280' height='720' autoplay></video>
-			</div>
-			<div class='col-md-8' id='canvas-frame' hidden>
-				<canvas id='canvas' width='1280' height='720'></canvas>
+			<div class='col-md-8'>
+				<div id="camera-frame">
+					<video id='camera' autoplay></video>
+				</div>
+				<div id='canvas-frame' hidden>
+					<canvas id='canvas' width='1280' height='720'></canvas>
+				</div>
 			</div>
 			<div class="col-md-2 pull-right">
 				<div class='row' id='photo-frame' hidden >
