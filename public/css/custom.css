@@ -178,6 +178,5 @@ body{
 }
 
 #canvas{
-	margin-top: 5px;
-	width: 304px;
+	margin: 15px auto;
 }

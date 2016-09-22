@@ -30,14 +30,15 @@
 			</div>
 
 			<div class="col-md-6" id="camera-frame">
-				<video id='camera' width='640' height='480' autoplay></video>
+				<video id='camera' width='1280' height='720' autoplay></video>
 			</div>
-
-			<div class="col-md-3 pull-right">
+			<div class='col-md-8' id='canvas-frame' hidden>
+				<canvas id='canvas' width='1280' height='720'></canvas>
+			</div>
+			<div class="col-md-2 pull-right">
 				<div class='row' id='photo-frame' hidden >
-					<canvas id='temp-canvas' width='640' height='480' hidden></canvas>
+					<canvas id='temp-canvas' width='1280' height='720' hidden></canvas>
 					<div id='filter-choices'></div>
-					<canvas id='canvas' width='640' height='480'></canvas>
 					<div id='snap-choice' hidden>
 						<p>What do you think?<p>
 						<button onclick='camera.saveImage()' id='positive'>I like it!</button>
