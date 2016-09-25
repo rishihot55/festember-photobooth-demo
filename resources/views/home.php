@@ -10,7 +10,7 @@
 			  src="https://code.jquery.com/jquery-3.1.0.min.js"
 			  integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
 			  crossorigin="anonymous"></script>
-		
+
 	</head>
 	<body style="overflow:hidden;">
 		<div class="row">
@@ -58,6 +58,7 @@
 		<script type='text/javascript' src='js/jquery-1.11.3.js'></script>
 		<script type='text/javascript' src='js/bootstrap.min.js'></script>
 		<script type='text/javascript' src='js/caman.full.js'></script>
+		<script type='text/javascript' src='js/watermark.min.js'></script>
 		<script type='text/javascript' src='js/photobooth.js'></script>
 		<script src="js/geometryangle.js"></script>
 <script>

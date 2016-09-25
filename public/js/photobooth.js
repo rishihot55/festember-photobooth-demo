@@ -45,7 +45,7 @@ var camera = (function(args) {
   // Clicking this button emulates the shutter button
   shutter.addEventListener('click', function() {
 
-    var TIME_DELAY = 3;
+    var TIME_DELAY = 7;
     var INTERVAL = 1000;
     var MILLISECOND_DELAY = TIME_DELAY * INTERVAL;
     var countdownInterval = setInterval(function() {
@@ -159,16 +159,23 @@ var camera = (function(args) {
 });
 
 function uploadImage(image) {
-  var formData = new FormData();
-  formData.append('base64image', image.src);
+  watermark([image, 'logo_min.png'])
+    .image(watermark.image.lowerRight(1))
+    .then(function (img) {
+      var formData = new FormData();
+      formData.append('base64image', img.src);
 
-  return $.ajax({
-    url: '/images/',
-    method: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-  });
+      return $.ajax({
+        url: '/images/',
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+      });
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 }
 
 function initializeFilterButtons() {
